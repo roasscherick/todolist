@@ -7,3 +7,4 @@ workflows:
     jobs:
       - cypress/run:
            record: true
+           store_artifacts: true
