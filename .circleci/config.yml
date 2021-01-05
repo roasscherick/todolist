@@ -29,12 +29,15 @@ jobs:
       - image: cimg/node:13.11.0
 
     steps: 
-      - checkout
+      # - checkout
+      - run:
+          name: Install libs
+          command: sudo apt-get install libxtst6 libgconf-2-4 libnss3 libasound2 libgtk-3-0 libxss1
       - run: npm install
       - run: npm run e2e
       - run:
-      name: Deploy
-      command: '${hook}'
+          name: Deploy
+          command: '${hook}'
 
 workflows:
   matrix-tests:
@@ -55,15 +58,15 @@ workflows:
           version: 10.19.0
           requires: 
             - build
-      - heroku/deploy-via-git:
-           name: herokudeploy
-           requires:
-            - test1
-            - test2
-            - test3
-           filters:
-            branches:
-              only: main
+      # - heroku/deploy-via-git:
+      #      name: herokudeploy
+      #      requires:
+      #       - test1
+      #       - test2
+      #       - test3
+      #      filters:
+      #       branches:
+      #         only: main
       - cypress/run:
            name: cypresstests
            record: true
