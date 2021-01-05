@@ -6,6 +6,9 @@
   "devDependencies": {
     "cypress": "^6.2.0"
   },
+  "scripts": {
+    "start": "web npm start"
+  },
   "author": "Radhika",
   "license": "ISC"
 }
