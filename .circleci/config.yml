@@ -17,6 +17,7 @@
 #               only: main
 
 version: 2.1
+
 orbs:
   node: circleci/node@3.0.0
   cypress: cypress-io/cypress@1.26.0
@@ -58,9 +59,9 @@ workflows:
             - test1
             - test2
             - test3
-    - heroku/deploy-via-git:
-          requires:
-            - cypresstests
-          filters:
+      - heroku/deploy-via-git:
+           requires:
+            - approve_for_deploy
+           filters:
             branches:
-              only: main
+              only: master
