@@ -61,7 +61,7 @@ workflows:
             - test3
       - heroku/deploy-via-git:
            requires:
-            - approve_for_deploy
+            - cypresstests
            filters:
             branches:
-              only: master
+              only: main
