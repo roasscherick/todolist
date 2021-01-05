@@ -52,7 +52,7 @@ workflows:
           requires: 
             - build
       - heroku/deploy-via-git:
-           name: herokudep
+           name: herokudeploy
            requires:
             - test1
             - test2
