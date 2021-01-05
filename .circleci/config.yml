@@ -31,6 +31,10 @@ jobs:
     steps: 
       - checkout
       - run: npm install
+      - run: npm run e2e
+      - run:
+      name: Deploy
+      command: '${hook}'
 
 workflows:
   matrix-tests:
