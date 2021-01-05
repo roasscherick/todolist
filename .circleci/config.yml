@@ -65,4 +65,4 @@ workflows:
            record: true
            store_artifacts: true
            requires:
-            - herokudep
+            - herokudeploy
