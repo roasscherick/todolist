@@ -1,14 +1,63 @@
+# version: 2.1
+# orbs:
+#   node: circleci/node@3.0.0
+#   cypress: cypress-io/cypress@1.26.0
+# workflows:
+#   build:
+#     jobs:
+#       - cypress/run:
+#            name: cypresstests
+#            record: true
+#            store_artifacts: true
+#     - heroku/deploy-via-git:
+#           requires:
+#             - cypresstests
+#           filters:
+#             branches:
+#               only: main
+
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
   cypress: cypress-io/cypress@1.26.0
-workflows:
+  heroku: circleci/heroku@1.0.1
+
+jobs:
   build:
+    docker:
+      - image: cimg/node:13.11.0
+
+    steps: 
+      - checkout
+      - run: npm install
+
+workflows:
+  matrix-tests:
     jobs:
+      - build
+      - node/test:
+          name: test1
+          version: 13.11.0
+          requires: 
+            - build
+      - node/test:
+          name: test2
+          version: 12.16.0
+          requires: 
+            - build
+      - node/test:
+          name: test3
+          version: 10.19.0
+          requires: 
+            - build
       - cypress/run:
            name: cypresstests
            record: true
            store_artifacts: true
+           requires:
+            - test1
+            - test2
+            - test3
     - heroku/deploy-via-git:
           requires:
             - cypresstests
