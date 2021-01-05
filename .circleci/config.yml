@@ -72,4 +72,6 @@ workflows:
            record: true
            store_artifacts: true
            requires:
-            - herokudeploy
+            - test1
+            - test2
+            - test3
