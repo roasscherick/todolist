@@ -51,17 +51,18 @@ workflows:
           version: 10.19.0
           requires: 
             - build
+      - heroku/deploy-via-git:
+           name: herokudep
+           requires:
+            - test1
+            - test2
+            - test3
+           filters:
+            branches:
+              only: main
       - cypress/run:
            name: cypresstests
            record: true
            store_artifacts: true
            requires:
-            - test1
-            - test2
-            - test3
-      - heroku/deploy-via-git:
-           requires:
-            - cypresstests
-           filters:
-            branches:
-              only: main
+            - herokudep
