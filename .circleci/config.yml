@@ -47,8 +47,8 @@ workflows:
             branches:
               only: main
       - cypress/run:
-           name: cypresstests
-           record: true
+          name: cypresstests
+          record: true
           #  store_artifacts: true
           requires:
             - netlifydeploy
