@@ -39,16 +39,16 @@ workflows:
             - build
       - deploy:
           name: netlifydeploy
-          requires: 
+          requires:
             - test1
             - test2
             - test3
-            filters:
-              branches:
-                only: main
+          filters:
+            branches:
+              only: main
       - cypress/run:
            name: cypresstests
            record: true
           #  store_artifacts: true
-           requires:
+          requires:
             - netlifydeploy
