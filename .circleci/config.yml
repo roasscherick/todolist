@@ -73,14 +73,14 @@ workflows:
       #       branches:
       #         only: main
       - deploy:
-           name: netlifydeploy
-           requires: 
-             - test1
-             - test2
-             - test3
-             filters:
-               branches:
-                 only: main
+          name: netlifydeploy
+          requires: 
+            - test1
+            - test2
+            - test3
+            filters:
+              branches:
+                only: main
       - cypress/run:
            name: cypresstests
            record: true
