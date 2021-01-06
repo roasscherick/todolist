@@ -34,11 +34,15 @@ jobs:
       #     name: Install libs
       #     command: sudo apt-get install libxtst6 libgconf-2-4 libnss3 libasound2 libgtk-3-0 libxss1
       - run: npm install
-      - run: cypress install
-      - run: npm run e2e
-      - run:
-          name: Deploy
-          command: '${hook}'
+      # - run: cypress install
+      # - run: npm run e2e
+      # - run:
+      #     name: Deploy
+      #     command: '${hook}'
+    deploy:
+      steps:
+        - run:
+            command: curl -X POST -d {} ${hook}
 
 workflows:
   matrix-tests:
@@ -68,11 +72,18 @@ workflows:
       #      filters:
       #       branches:
       #         only: main
+      - deploy:
+           name: netlifydeploy
+           requires: 
+              - test1
+              - test2
+              - test3
+              filters:
+                branches:
+                  only: main
       - cypress/run:
            name: cypresstests
            record: true
            store_artifacts: true
            requires:
-            - test1
-            - test2
-            - test3
+            - netlifydeploy
