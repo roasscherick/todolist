@@ -2,22 +2,16 @@ const { cyan } = require("chalk")
 
 describe('My first test', () => {
     it('Visits the webiste', () => {
-        cy.visit('https://todolisthandson.herokuapp.com/')
+        cy.visit('https://priceless-johnson-edbe3b.netlify.app')
     })
 })
 
-describe('My First Test', () => {
-    it('finds the content "type"', () => {
-      cy.visit('https://todolisthandson.herokuapp.com/')
-  
-      cy.contains("Radhika's Todo List")
-    })
-  })
+  // add a test that checks for that the app contains the <h1> header
 
-  describe('My First Test', () => {
+  describe('My Third Test', () => {
     it('finds the content "type"', () => {
-      cy.visit('https://todolisthandson.herokuapp.com/')
+      cy.visit('https://priceless-johnson-edbe3b.netlify.app')
   
-      cy.get('select').select('completed')
+      cy.get('form button').click()
     })
   })

@@ -2,14 +2,13 @@ version: 2.1
 
 orbs:
   node: circleci/node@3.0.0
-  cypress: cypress-io/cypress@1.26.0
-  # heroku: circleci/heroku@1.0.1
+  # Add the cypress orb beneath this line
+ 
 
 jobs:
   build:
     docker:
       - image: cimg/node:13.11.0
-
     steps: 
       - checkout
       - run: npm install
@@ -18,10 +17,11 @@ jobs:
       - image: cimg/node:13.11.0
     steps:
       - run:
-          command: curl -X POST -d {} ${hook}
+          # add your environment variable between the ${}
+          command: curl -X POST -d {} ${}
 
 workflows:
-  matrix-tests:
+  main:
     jobs:
       - build
       - node/test:
@@ -34,11 +34,7 @@ workflows:
           version: 12.16.0
           requires: 
             - build
-      - node/test:
-          name: test3
-          version: 10.19.0
-          requires: 
-            - build
+      # add a node test for version 10.19.0 (don't forget to give it a name) and it should require build
       - deploy:
           name: netlifydeploy
           requires:
@@ -48,9 +44,9 @@ workflows:
           filters:
             branches:
               only: main
-      - cypress/run:
-          name: cypresstests
-          record: true
+      # - cypress/run:
+      #     name: cypresstests
+      #     record: true
           #  store_artifacts: true
-          requires:
-            - netlifydeploy
+          # requires:
+          #   - netlifydeploy
