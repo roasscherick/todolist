@@ -26,6 +26,7 @@ form input, form button {
 
 form button {
     /* add a color using the color element*/
+    color:#E29178
     font-size: 2rem;
     background: white;
     cursor: pointer;
