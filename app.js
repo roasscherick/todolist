@@ -7,7 +7,10 @@ const todoList = document.querySelector('.todo-list');
 
 //Event Listeners
 todoButton.addEventListener('click', addTodo);
+todoList.addEventListener('click', deleteCheck);
 // add the addEventListener for todoList which has a callback function (deleteCheck)
+
+
 
 //Functions
 function addTodo(event){
