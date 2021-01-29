@@ -1,5 +1,6 @@
 body{
     /* add a background color using the background-color element*/
+    background-color: #33FFFC;
     color: black;
     font-family: 'Lobster Two', sans-serif;
     min-height: 100vh;
